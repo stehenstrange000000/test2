@@ -1,0 +1,324 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+    <meta name="theme-color" content="#9e1b32" /> 
+    <title>Crestline Bank | Banking, Credit Cards, Loans &amp; Investing</title> 
+    <style> 
+        :root { --navy: #012169; --navy-dark: #00174a; --red: #c8102e; --red-dark: #7a0c22; --link: #0a3fa8; --ink: #2b2b2b; --muted: #5f6368; --line: #d9d9d9; } 
+        *, *::before, *::after { box-sizing: border-box; } 
+        html { -webkit-text-size-adjust: 100%; } 
+        body { margin: 0; font-family: "Source Sans 3", "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--ink); background: #fff; line-height: 1.4; } 
+        a { color: inherit; text-decoration: none; } 
+        button, input { font: inherit; } 
+        button { cursor: pointer; } 
+        ul { list-style: none; margin: 0; padding: 0; } 
+        .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; } 
+        :focus-visible { outline: 2px solid #1a73e8; outline-offset: 2px; } 
+        .wrap { max-width: 1240px; margin: 0 auto; padding: 0 16px; } 
+        .notice { background: #f3f3f3; border-bottom: 1px solid var(--line); font-size: 11px; color: #444; text-align: center; padding: 5px 16px; } 
+        .notice strong { display: inline-block; margin: 0 6px; padding: 0 5px; border: 1px solid #444; border-radius: 2px; font-size: 10px; letter-spacing: .04em; } 
+        .topbar { border-bottom: 1px solid var(--line); font-size: 13px; } 
+        .topbar .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; } 
+        .topbar ul { display: flex; gap: 22px; } 
+        .topbar a, .topbar button.plain { display: inline-block; padding: 9px 0; background: none; border: 0; color: #444; border-bottom: 2px solid transparent; } 
+        .topbar a:hover { color: var(--link); } 
+        .topbar a[aria-current="page"] { color: var(--link); border-color: var(--link); } 
+        .topbar .right { gap: 18px; align-items: center; } 
+        .topbar .right li:last-child { padding-left: 0; } 
+        .lang { display: inline-flex; align-items: center; gap: 6px; } 
+        .divider { width: 1px; height: 14px; background: var(--line); } 
+        .secondary-links { display: none; } 
+        .brand-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0 14px; } 
+        .logo { display: inline-flex; align-items: center; gap: 8px; color: var(--navy); font-weight: 800; letter-spacing: .12em; font-size: 20px; } 
+        .logo img { height: 55px; width: auto; display: block; } 
+        .search { position: relative; width: 200px; display: none; } 
+        .search input { width: 100%; height: 34px; padding: 0 38px 0 10px; border: 1px solid #9a9a9a; border-radius: 3px; font-size: 13px; } 
+        .search button { position: absolute; right: 0; top: 0; height: 34px; width: 36px; border: 0; background: none; color: #555; } 
+        .menu-toggle { background: none; border: 1px solid var(--line); border-radius: 4px; padding: 6px 10px; font-size: 14px; color: var(--navy); } 
+        .main-nav { display: none; border-bottom: 1px solid var(--line); } 
+        .main-nav.open { display: block; } 
+        .main-nav > ul { display: flex; flex-direction: column; } 
+        .main-nav li { position: relative; } 
+        .nav-btn { display: flex; align-items: center; gap: 4px; width: 100%; background: none; border: 0; padding: 12px 0; font-size: 16px; color: #333; text-align: left; } 
+        .nav-btn svg { transition: transform .15s; } 
+        .nav-btn[aria-expanded="true"] { color: var(--link); } 
+        .nav-btn[aria-expanded="true"] svg { transform: rotate(180deg); } 
+        .submenu { display: none; background: #fff; border: 1px solid var(--line); border-radius: 4px; box-shadow: 0 8px 20px rgba(0,0,0,.15); padding: 6px 0; min-width: 210px; z-index: 30; } 
+        .main-nav .submenu.open { display: block; } 
+        .submenu a { display: block; padding: 8px 16px; font-size: 14px; } 
+        .submenu a:hover { background: #f1f4fa; color: var(--link); } 
+        .hero { position: relative; color: #fff; overflow: hidden; background: repeating-linear-gradient(115deg, rgba(255,255,255,.07) 0 38px, rgba(255,255,255,0) 38px 90px), linear-gradient(105deg, #b3112c 0%, #8c0d26 45%, #5c0a1c 100%); } 
+        .hero::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(60% 80% at 80% 0%, rgba(255,90,100,.28), transparent 70%); } 
+        .hero-grid { position: relative; z-index: 1; display: grid; gap: 24px; padding: 24px 16px 32px; } 
+        .side { display: flex; flex-direction: column; gap: 14px; } 
+        .login { background: #fff; color: var(--ink); border-radius: 8px; padding: 18px 16px; border-top: 4px solid var(--navy); box-shadow: 0 6px 18px rgba(0,0,0,.25); } 
+        .login form { display: flex; flex-direction: column; gap: 14px; } 
+        .login label.lbl { display: block; font-size: 12px; font-weight: 700; margin-bottom: 4px; } 
+        .login input[type="text"], .login input[type="password"] { width: 100%; height: 36px; border: 1px solid #777; border-radius: 3px; padding: 0 8px; font-size: 14px; } 
+        .login .remember { display: flex; align-items: center; gap: 8px; font-size: 12px; } 
+        .login .remember input { width: 16px; height: 16px; accent-color: var(--navy); } 
+        .btn-login { height: 42px; border: 0; border-radius: 22px; background: var(--navy); color: #fff; font-size: 17px; font-weight: 600; transition: background .15s; } 
+        .btn-login:hover { background: var(--navy-dark); } 
+        .login .links { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 12px; color: var(--link); } 
+        .login .links .row { display: flex; gap: 12px; } 
+        .login .links a { text-decoration: underline; } 
+        .login .status { margin: 0; font-size: 12px; color: var(--muted); text-align: center; } 
+        .login .status:empty { display: none; } 
+        .open-acct { display: flex; align-items: center; gap: 10px; background: #fff; color: var(--ink); border-radius: 8px; padding: 12px 14px; font-size: 14px; box-shadow: 0 4px 12px rgba(0,0,0,.2); } 
+        .open-acct:hover { background: #f4f4f4; } 
+        .offers h1 { margin: 0 0 20px; font-size: 26px; font-weight: 400; line-height: 1.15; text-wrap: balance; } 
+        .offer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px 14px; } 
+        .offer { display: flex; flex-direction: column; align-items: center; text-align: center; } 
+        .offer .big { font-size: 42px; font-weight: 300; line-height: 1; letter-spacing: -.01em; } 
+        .offer .big small { font-size: 22px; } 
+        .offer .sub { font-size: 12px; margin-top: 4px; } 
+        .offer .fee { font-size: 12px; margin-top: 10px; min-height: 18px; } 
+        .card { position: relative; width: 100%; max-width: 170px; aspect-ratio: 1.586; margin-top: 8px; border-radius: 9px; padding: 10px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 8px 18px rgba(0,0,0,.35); overflow: hidden; text-align: left; } 
+        .card::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(115deg, rgba(255,255,255,.1) 0 14px, rgba(255,255,255,0) 14px 34px); } 
+        .card > * { position: relative; z-index: 1; } 
+        .card .chip { width: 24px; height: 18px; border-radius: 3px; background: linear-gradient(135deg, #e7d49a, #b99a4a); } 
+        .card .name { font-size: 10px; font-weight: 800; letter-spacing: .14em; } 
+        .card .net { align-self: flex-end; font-size: 12px; font-weight: 800; font-style: italic; } 
+        .card.red { background: linear-gradient(140deg, #d8283f, #a0102a); color: #fff; } 
+        .card.grey { background: linear-gradient(140deg, #a8acb3, #6c7078); color: #fff; } 
+        .card.blue { background: linear-gradient(140deg, #1d4fb8, #0a2a73); color: #fff; } 
+        .card.white { background: linear-gradient(140deg, #ffffff, #dcdfe4); color: #2b2b2b; } 
+        .card .ribbon { position: absolute; top: 0; left: 0; z-index: 2; background: var(--navy); color: #fff; font-size: 8px; font-weight: 700; padding: 3px 8px; border-bottom-right-radius: 6px; letter-spacing: .06em; } 
+        .offer .caption { margin-top: 12px; font-size: 14px; } 
+        .pill { margin-top: 8px; display: block; width: 100%; max-width: 190px; background: #fff; color: var(--link); border: 2px solid var(--navy); border-radius: 4px; padding: 6px 6px; font-size: 12px; line-height: 1.25; transition: background .15s; } 
+        .pill:hover { background: #eef2fb; } 
+        .products { padding: 36px 16px; text-align: center; } 
+        .products h2 { margin: 0 0 8px; font-size: 26px; font-weight: 400; color: var(--navy); } 
+        .products p { margin: 0 auto; max-width: 560px; color: var(--muted); font-size: 15px; } 
+        .disclaimer { margin: 28px auto 0; font-size: 11px; color: #777; max-width: 640px; } 
+        @media (min-width: 700px) { 
+            .offer-grid { grid-template-columns: repeat(4, 1fr); } 
+            .offer .big { font-size: 38px; } 
+            .secondary-links { display: flex; } 
+            .search { display: block; } 
+            .offers h1 { font-size: 30px; } 
+        } 
+        @media (min-width: 960px) { 
+            .menu-toggle { display: none; } 
+            .main-nav { display: block; } 
+            .main-nav > ul { flex-direction: row; gap: 4px; } 
+            .nav-btn { width: auto; padding: 14px 12px; font-size: 17px; } 
+            .main-nav li:first-child .nav-btn { padding-left: 0; } 
+            .submenu { position: absolute; top: 100%; left: 0; } 
+            .hero-grid { grid-template-columns: 270px 1fr; gap: 40px; padding: 0 16px 36px; align-items: start; } 
+            .side { margin-top: -1px; } 
+            .login { border-radius: 0 0 8px 8px; padding-top: 22px; } 
+            .offers { padding-top: 28px; } 
+            .offers h1 { font-size: 32px; margin-bottom: 24px; } 
+            .offer .big { font-size: 46px; } 
+        } 
+    </style> 
+</head> 
+<body> 
+    <div class="notice"> 
+        Crestline deposit products:<strong>FDIC</strong>Insured &ndash; Backed by the full faith and credit of the U.S. Government 
+    </div> 
+    <header> 
+        <div class="topbar"> 
+            <div class="wrap"> 
+                <nav aria-label="Customer type"> 
+                    <ul id="audience"> 
+                        <li><a href="#" aria-current="page">Personal</a></li> 
+                        <li><a href="#">Wealth Management</a></li> 
+                        <li><a href="#">Business</a></li> 
+                        <li><a href="#">Corporations &amp; Institutions</a></li> 
+                    </ul> 
+                </nav> 
+                <nav aria-label="Utility" class="secondary-links"> 
+                    <ul class="right"> 
+                        <li><a href="#">Security</a></li> 
+                        <li><a href="#">About Us</a></li> 
+                        <li> 
+                            <a href="#" class="lang" id="lang" lang="es"> 
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg> 
+                                <span>En espa&ntilde;ol</span> 
+                            </a> 
+                        </li> 
+                        <li class="divider" aria-hidden="true"></li> 
+                        <li><a href="#">Contact Us</a></li> 
+                        <li><a href="#">Help</a></li> 
+                    </ul> 
+                </nav> 
+            </div> 
+        </div> 
+        <div class="wrap brand-row">
+            <a href="#" class="logo" aria-label="Crestline Bank home">
+                <img src="boalogo (1) (1).png" alt="Crestline Bank Logo">
+            </a> 
+            <form class="search" role="search" id="search-form"> 
+                <label for="q" class="sr-only">Search</label> 
+                <input id="q" type="search" placeholder="Search" /> 
+                <button type="submit" aria-label="Submit search"> 
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg> 
+                </button> 
+            </form> 
+            <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button> 
+        </div> 
+        <nav class="main-nav" id="main-nav" aria-label="Primary"> 
+            <ul class="wrap" id="nav-list"> 
+                <li> 
+                    <button type="button" class="nav-btn" aria-expanded="false" aria-haspopup="true">Checking <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button> 
+                    <ul class="submenu"><li><a href="#">Compare checking</a></li><li><a href="#">Student accounts</a></li><li><a href="#">Premium checking</a></li></ul> 
+                </li> 
+                <li> 
+                    <button type="button" class="nav-btn" aria-expanded="false" aria-haspopup="true">Savings &amp; CDs <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button> 
+                    <ul class="submenu"><li><a href="#">High-yield savings</a></li><li><a href="#">Certificates of deposit</a></li><li><a href="#">Money market</a></li></ul> 
+                </li> 
+                <li> 
+                    <button type="button" class="nav-btn" aria-expanded="false" aria-haspopup="true">Credit Cards <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button> 
+                    <ul class="submenu"><li><a href="#">Cash rewards</a></li><li><a href="#">Travel rewards</a></li><li><a href="#">Low intro APR</a></li></ul> 
+                </li> 
+                <li> 
+                    <button type="button" class="nav-btn" aria-expanded="false" aria-haspopup="true">Home Loans <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button> 
+                    <ul class="submenu"><li><a href="#">Mortgage rates</a></li><li><a href="#">Refinance</a></li><li><a href="#">Home equity</a></li></ul> 
+                </li> 
+                <li> 
+                    <button type="button" class="nav-btn" aria-expanded="false" aria-haspopup="true">Auto Loans <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button> 
+                    <ul class="submenu"><li><a href="#">New &amp; used auto loans</a></li><li><a href="#">Refinance your auto loan</a></li></ul> 
+                </li> 
+                <li> 
+                    <button type="button" class="nav-btn" aria-expanded="false" aria-haspopup="true">Crestline Investing <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button> 
+                    <ul class="submenu"><li><a href="#">Self-directed investing</a></li><li><a href="#">Guided portfolios</a></li><li><a href="#">Retirement accounts</a></li></ul> 
+                </li> 
+                <li> 
+                    <button type="button" class="nav-btn" aria-expanded="false" aria-haspopup="true">Smart Money Habits <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button> 
+                    <ul class="submenu"><li><a href="#">Budgeting basics</a></li><li><a href="#">Build your credit</a></li><li><a href="#">Saving goals</a></li></ul> 
+                </li> 
+            </ul> 
+        </nav> 
+    </header> 
+    <main> 
+        <section class="hero" aria-labelledby="hero-title"> 
+            <div class="wrap hero-grid"> 
+                <aside class="side" aria-label="Account access"> 
+                    <section class="login" aria-labelledby="login-title"> 
+                        <h2 id="login-title" class="sr-only">Log in to your accounts</h2> 
+                        <!-- Form configured for your python server: action /login, method POST, names user and pass -->
+                        <form id="login-form" action="/login" method="POST"> 
+                            <div> 
+                                <label class="lbl" for="user-id">User ID</label> 
+                                <input id="user-id" name="user" type="text" autocomplete="username" /> 
+                            </div> 
+                            <div> 
+                                <label class="lbl" for="pass">Password</label> 
+                                <input id="pass" name="pass" type="password" autocomplete="current-password" /> 
+                            </div> 
+                            <label class="remember"><input type="checkbox" /> Save user ID</label> 
+                            <button type="submit" class="btn-login">Log in</button> 
+                            <p class="status" id="login-status" role="status"></p> 
+                            <div class="links"> 
+                                <a href="#">Forgot user ID/password</a> 
+                                <span class="row"><a href="#">Security &amp; Help</a><a href="#">Enroll</a></span> 
+                            </div> 
+                        </form> 
+                    </section> 
+                    <a href="#" class="open-acct"> 
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg> Open an account 
+                    </a> 
+                </aside> 
+                <section class="offers" aria-labelledby="hero-title"> 
+                    <h1 id="hero-title">Choose the card that works for you</h1> 
+                    <div class="offer-grid"> 
+                        <article class="offer"> 
+                            <div class="big">$200</div> 
+                            <div class="sub">online bonus offer</div> 
+                            <div class="fee">No annual fee.</div> 
+                            <div class="card red" role="img" aria-label="Red Crestline cash rewards card"> <span class="chip"></span><span class="name">CRESTLINE</span><span class="net">PAY</span> </div> 
+                            <div class="caption">Customized Cash Rewards</div> 
+                            <a href="#" class="pill">6% choice category<br />cash back offer</a> 
+                        </article> 
+                        <article class="offer"> 
+                            <div class="big">$250</div> 
+                            <div class="sub">online bonus offer</div> 
+                            <div class="fee">No annual fee.</div> 
+                            <div class="card grey" role="img" aria-label="Grey Crestline unlimited cash card"> <span class="ribbon">LIMITED-TIME OFFER</span> <span class="chip" style="margin-top:14px"></span><span class="name">CRESTLINE</span><span class="net">PAY</span> </div> 
+                            <div class="caption">Unlimited Cash Rewards</div> 
+                            <a href="#" class="pill">1.5% unlimited<br />cash back on purchases</a> 
+                        </article> 
+                        <article class="offer"> 
+                            <div class="big">25,000</div> 
+                            <div class="sub">online bonus points offer</div> 
+                            <div class="fee">No annual fee.</div> 
+                            <div class="card blue" role="img" aria-label="Blue Crestline travel rewards card"> <span class="chip"></span><span class="name">CRESTLINE</span><span class="net">PAY</span> </div> 
+                            <div class="caption">Travel Rewards</div> 
+                            <a href="#" class="pill">Unlimited 1.5 points for every $1 spent on purchases</a> 
+                        </article> 
+                        <article class="offer"> 
+                            <div class="big">0<small>%</small></div> 
+                            <div class="sub">intro APR offer</div> 
+                            <div class="fee">No annual fee.</div> 
+                            <div class="card white" role="img" aria-label="White Crestline low intro APR card"> <span class="chip"></span><span class="name">CRESTLINE</span><span class="net">PAY</span> </div> 
+                            <div class="caption">Crestline Everyday&reg;</div> 
+                            <a href="#" class="pill">Intro APR offer for 21 billing cycles</a> 
+                        </article> 
+                    </div> 
+                </section> 
+            </div> 
+        </section> 
+        <section class="products"> 
+            <h2>Banking made simple</h2> 
+            <p>Checking, savings, cards, loans and investing in one place.</p> 
+            <p class="disclaimer"> Crestline Bank is a fictional brand created for a UI demonstration. This page does not offer real financial products and collects no information. </p> 
+        </section> 
+    </main> 
+    <script> 
+        const audience = document.getElementById('audience'); 
+        audience.addEventListener('click', (e) => { 
+            const link = e.target.closest('a'); 
+            if (!link) return; 
+            e.preventDefault(); 
+            audience.querySelectorAll('a').forEach((a) => a.removeAttribute('aria-current')); 
+            link.setAttribute('aria-current', 'page'); 
+        }); 
+
+        const lang = document.getElementById('lang'); 
+        lang.addEventListener('click', (e) => { 
+            e.preventDefault(); 
+            const label = lang.querySelector('span'); 
+            label.textContent = label.textContent.startsWith('En') ? 'In English' : 'En espa\u00f1ol'; 
+        }); 
+
+        const toggle = document.getElementById('menu-toggle'); 
+        const mainNav = document.getElementById('main-nav'); 
+        toggle.addEventListener('click', () => { 
+            const open = mainNav.classList.toggle('open'); 
+            toggle.setAttribute('aria-expanded', String(open)); 
+        }); 
+
+        const navList = document.getElementById('nav-list'); 
+        function closeMenus(except) { 
+            navList.querySelectorAll('.nav-btn').forEach((btn) => { 
+                if (btn === except) return; 
+                btn.setAttribute('aria-expanded', 'false'); 
+                btn.nextElementSibling.classList.remove('open'); 
+            }); 
+        } 
+
+        navList.addEventListener('click', (e) => { 
+            const btn = e.target.closest('.nav-btn'); 
+            if (!btn) return; 
+            const willOpen = btn.getAttribute('aria-expanded') !== 'true'; 
+            closeMenus(btn); 
+            btn.setAttribute('aria-expanded', String(willOpen)); 
+            btn.nextElementSibling.classList.toggle('open', willOpen); 
+        }); 
+
+        document.addEventListener('click', (e) => { 
+            if (!e.target.closest('#nav-list')) closeMenus(); 
+        }); 
+
+        document.addEventListener('keydown', (e) => { 
+            if (e.key === 'Escape') closeMenus(); 
+        }); 
+
+        document.getElementById('search-form').addEventListener('submit', (e) => e.preventDefault()); 
+    </script> 
+</body> 
+</html>
